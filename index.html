@@ -19,7 +19,7 @@
 </head>
 <body class="bg-[#F8FAFC]">
 
-    <!-- header section with minimal dashboardf -->
+    <!-- header section with minimal dashboard -->
     <header class="container mx-auto mt-8 space-y-4">
         <h1 class="text-3xl font-bold text-[#002C5C]">Job Application Tracker</h1>
 
@@ -27,15 +27,15 @@
         <div class="flex gap-4">
             <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
                 <p class="text-sm">Total</p>
-                <p class="text-2xl text-[#002C5C]">0</p>
+                <p id="total-counter" class="text-2xl text-[#002C5C]">0</p>
             </div>
             <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
                 <p class="text-sm">Interview</p>
-                <p class="text-2xl text-[#10B981]">0</p>
+                <p id="interview-counter" class="text-2xl text-[#10B981]">0</p>
             </div>
             <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
                 <p class="text-sm">Rejected</p>
-                <p class="text-2xl text-[#EF4444]">0</p>
+                <p id="rejected-counter" class="text-2xl text-[#EF4444]">0</p>
             </div>
         </div>
     </header>
@@ -47,19 +47,18 @@
 
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold text-[#002C5C]">Available Jobs</h2>
-            <p class="text-[#64748B]">0 jobs</p>
+            <p id="job-count" class="text-[#64748B]">0 jobs</p>
         </div>
 
         <div class="space-y-4">
             <div class="flex gap-2">
-
-                <button class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">All</button>
+                <button class="text-xs text-white bg-[#3B82F6] font-semibold px-3 py-2 rounded border border-[#F1F2F4] w-20">All</button>
                 <button class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">Interview</button>
                 <button class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">Rejected</button>
             </div>
 
             <!-- job card list will be displayed here -->
-            <div class="space-y-4">
+            <div id="jobs-container" class="space-y-4">
                 <!-- job card -->
                 <div class="space-y-5 bg-white p-6 border border-[#F1F2F4] rounded-lg">
                     <div class="space-y-1 flex justify-between items-center">
@@ -86,8 +85,7 @@
                     </div>
                 </div>
 
-                
-                <!-- empty state continue here 🛑 🛑--> 
+                <!-- empty state--> 
                 <div class="space-y-5 bg-white border border-[#F1F2F4] rounded-lg text-center py-16 px-10">
                     <img src="./empty-state.png" alt="empty-state text image" class="mx-auto">
                     <div>
@@ -98,5 +96,7 @@
             </div>
         </div>
     </main>
+
+    <script src="./script.js"></script>
 </body>
 </html>
