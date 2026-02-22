@@ -144,7 +144,7 @@ function onToggle(toggled) {
     toggleSelected = toggled;
 
     editeStyleOnToogle(toggled);
-    
+
     if (toggled === "all-jobs") {
         jobsDialog.innerText = `${jobs.length} jobs`;
         renderJobs(jobs);
@@ -194,7 +194,6 @@ function renderJobs(jobs) {
 
     if (jobs.length === 0) {
         jobsContainer.innerHTML = `
-            <!-- empty state--> 
             <div class="space-y-5 bg-white border border-[#F1F2F4] rounded-lg text-center py-16 px-10">
                 <img src="./empty-state.png" alt="empty-state text image" class="mx-auto">
                 <div>
