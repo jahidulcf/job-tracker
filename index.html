@@ -4,18 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application tracker</title>
+
+    <!-- tailwindcss link -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Geist font link -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
 </head>
-<body>
+<body class="bg-[#F8FAFC]">
 
     <!-- header section with minimal dashboardf -->
-    <header>
-        <p class="p-4 text-3xl">header</p>
+    <header class="container mx-auto mt-8 space-y-4">
+        <h1 class="text-3xl font-bold text-[#002C5C]">Job Application Tracker</h1>
+
+        <!-- minimal dashboard -->
+        <div class="flex gap-4">
+            <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
+                <p class="text-sm">Total</p>
+                <p class="text-2xl text-[#002C5C]">0</p>
+            </div>
+            <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
+                <p class="text-sm">Interview</p>
+                <p class="text-2xl text-[#10B981]">0</p>
+            </div>
+            <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
+                <p class="text-sm">Rejected</p>
+                <p class="text-2xl text-[#EF4444]">0</p>
+            </div>
+        </div>
     </header>
 
+    <hr class="my-7 container mx-auto text-[#E6E7E9]">
+
     <!-- main section:: all jobs will be displayed here-->
-    <main>
+    <main class="container mx-auto">
         <p>main</p>
     </main>
 </body>
