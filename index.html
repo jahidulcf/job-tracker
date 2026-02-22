@@ -20,79 +20,49 @@
 <body class="bg-[#F8FAFC]">
 
     <!-- header section with minimal dashboard -->
-    <header class="container mx-auto mt-8 space-y-4">
+    <header class="container mx-auto bg-[#F8FAFC] mt-8 space-y-4 sticky top-0">
+
         <h1 class="text-3xl font-bold text-[#002C5C]">Job Application Tracker</h1>
 
         <!-- minimal dashboard -->
         <div class="flex gap-4">
             <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
                 <p class="text-sm">Total</p>
-                <p id="total-counter" class="text-2xl text-[#002C5C]">0</p>
+                <p id="total-jobs" class="text-2xl text-[#002C5C]">0</p>
             </div>
+
             <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
                 <p class="text-sm">Interview</p>
-                <p id="interview-counter" class="text-2xl text-[#10B981]">0</p>
+                <p id="interview-total" class="text-2xl text-[#10B981]">0</p>
             </div>
+
             <div class="flex-1 bg-white p-5 border border-[#F1F2F4] rounded-lg">
                 <p class="text-sm">Rejected</p>
-                <p id="rejected-counter" class="text-2xl text-[#EF4444]">0</p>
+                <p id="rejected-total" class="text-2xl text-[#EF4444]">0</p>
             </div>
         </div>
-    </header>
 
-    <hr class="my-7 container mx-auto text-[#E6E7E9]">
+        <hr class="my-7 text-[#E6E7E9]">
+    </header>
 
     <!-- main section:: all jobs will be displayed here-->
     <main class="container mx-auto space-y-6">
 
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold text-[#002C5C]">Available Jobs</h2>
-            <p id="job-count" class="text-[#64748B]">0 jobs</p>
+            <p id="jobs-dialog" class="text-[#64748B]">0 jobs</p>
         </div>
 
         <div class="space-y-4">
+
             <div class="flex gap-2">
-                <button class="text-xs text-white bg-[#3B82F6] font-semibold px-3 py-2 rounded border border-[#F1F2F4] w-20">All</button>
-                <button class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">Interview</button>
-                <button class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">Rejected</button>
+                <button id="all-jobs" onclick="onToggle('all-jobs')" class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded border bg-white border-[#F1F2F4] w-20">All</button>
+                <button id="interview" onclick="onToggle('interview')" class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">Interview</button>
+                <button id="rejected" onclick="onToggle('rejected')" class="text-xs text-[#64748B] font-semibold px-3 py-2 rounded bg-white border border-[#F1F2F4] w-20">Rejected</button>
             </div>
 
-            <!-- job card list will be displayed here -->
             <div id="jobs-container" class="space-y-4">
-                <!-- job card -->
-                <div class="space-y-5 bg-white p-6 border border-[#F1F2F4] rounded-lg">
-                    <div class="space-y-1 flex justify-between items-center">
-                        <div>
-                            <h3 class="text-lg font-bold text-[#002C5C]">Job Title</h3>
-                            <p class="text-[#64748B]">Company Name</p>
-                        </div>
-
-                        <button class="text-[#64748B] border border-[#F1F2F4] rounded-full w-[32px] h-[32px]">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button>
-                    </div>
-
-                    <p class="text-sm text-[#64748B]"><span>Remote</span> • <span>Full Time</span> • $<span>130,000</span> - $<span>175,000</span></p>
-
-                    <div class="space-y-2">
-                        <p class="text-sm font-medium uppercase text-[#002C5C] px-3 py-2 bg-[#EEF4FF] inline-block rounded">Status</p>
-                        <p class="text-sm">Job Description will be displayed here, based on job nature</p>
-                    </div>
-
-                    <div class="flex gap-2">
-                        <button class="text-sm font-semibold px-3 py-2 uppercase border border-[#10B981] text-[#10B981] rounded">Interview</button>
-                        <button class="text-sm font-semibold px-3 py-2 uppercase border border-[#EF4444] text-[#EF4444] rounded">Rejected</button>
-                    </div>
-                </div>
-
-                <!-- empty state--> 
-                <div class="space-y-5 bg-white border border-[#F1F2F4] rounded-lg text-center py-16 px-10">
-                    <img src="./empty-state.png" alt="empty-state text image" class="mx-auto">
-                    <div>
-                        <p class="text-2xl font-semibold text-[#002C5C] mb-1">No jobs available</p>
-                        <p class="text-[#64748B]">Check back soon for new opportunities</p>
-                    </div>
-                </div>
+                <!-- jobs will be displayed here dynamically -->
             </div>
         </div>
     </main>

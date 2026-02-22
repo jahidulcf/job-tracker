@@ -7,7 +7,7 @@ const jobs = [
         location: "Boston",
         "min salary": "70,000",
         "max salary": "110,000",
-        status: "Interview",
+        status: "interview",
         description: "Collect, process, and analyze data to provide insights, create reports, and support business decision-making through data-driven strategies.",
     },
     {
@@ -89,22 +89,38 @@ const jobs = [
     }
 ];
 
-let toggled = "all-jobs";
-// let toggled = "Interview";
+let toggleSelected = "all-jobs";
+
+const totalJobs = document.getElementById("total-jobs");
+const interviewJobs = document.getElementById("interview-total");
+const rejectedJobs = document.getElementById("rejected-total");
+
+const jobsDialog = document.getElementById("jobs-dialog");
+const jobsContainer = document.getElementById("jobs-container");
 
 function interview(jobId) {
     let job = jobs.find((job) => job.id === jobId);
-    job.status = "Interview";
+    job.status = "interview";
+    renderJobs(jobs);
+    calculateJobs();
 }
 
 function reject(jobId) {
     let job = jobs.find((job) => job.id === jobId);
-    job.status = "Rejected";
+    job.status = "rejected";
+    renderJobs(jobs);
+    calculateJobs();
 }
 
 function deleteJob(jobId) {
     let jobIndex = jobs.findIndex((job) => job.id === jobId);
     jobs.splice(jobIndex, 1);
+    if (toggleSelected === "all-jobs") {
+        renderJobs(jobs);
+    } else {
+        renderJobs(filterByStatus(toggleSelected));
+    }
+    calculateJobs();
 }
 
 function filterByStatus(status) {
@@ -112,41 +128,72 @@ function filterByStatus(status) {
     return filteredJobs;
 }
 
-// ----------------------- dom manipulation start here -----------------------
-
-const totalCount = document.getElementById("total-counter");
-const interviewCount = document.getElementById("interview-counter");
-const rejectedCount = document.getElementById("rejected-counter");
-
-const jobCount = document.getElementById("job-count");
-
-const jobContainer = document.getElementById("jobs-container");
-
 document.addEventListener("DOMContentLoaded", function () {
+    calculateJobs();
+    onToggle("all-jobs");
     renderJobs(jobs);
-    updateCounter();
-    updateJobCount();
 });
 
-function updateCounter() {
-    totalCount.textContent = jobs.length;
-    interviewCount.textContent = filterByStatus("Interview").length;
-    rejectedCount.textContent = filterByStatus("Rejected").length;
+function calculateJobs() {
+    totalJobs.textContent = jobs.length;
+    interviewJobs.textContent = filterByStatus("interview").length;
+    rejectedJobs.textContent = filterByStatus("rejected").length;
 }
 
-function updateJobCount() {
+function onToggle(toggled) {
+    toggleSelected = toggled;
+
+    editeStyleOnToogle(toggled);
+    
     if (toggled === "all-jobs") {
-        jobCount.textContent = `${jobs.length} jobs`;
+        jobsDialog.innerText = `${jobs.length} jobs`;
+        renderJobs(jobs);
     } else {
-        jobCount.textContent = `${filterByStatus(toggled).length} of ${jobs.length} jobs`;
+        jobsDialog.innerText = `${filterByStatus(toggled).length} of ${jobs.length} jobs`;
+        renderJobs(filterByStatus(toggled));
+    }
+}
+
+function editeStyleOnToogle(toggled) {
+    const allJobs = document.getElementById("all-jobs");
+    const interview = document.getElementById("interview");
+    const rejected = document.getElementById("rejected");
+
+    if (toggled === "all-jobs") {
+        allJobs.classList.remove("bg-white", "text-[#64748B]");
+        allJobs.classList.add("bg-[#3B82F6]", "text-white");
+
+        interview.classList.remove("bg-[#3B82F6]", "text-white");
+        interview.classList.add("bg-white", "text-[#64748B]");
+
+        rejected.classList.remove("bg-[#3B82F6]", "text-white");
+        rejected.classList.add("bg-white", "text-[#64748B]");
+    } else if (toggled === "interview") {
+        allJobs.classList.remove("bg-[#3B82F6]", "text-white");
+        allJobs.classList.add("bg-white", "text-[#64748B]");
+
+        interview.classList.remove("bg-white", "text-[#64748B]");
+        interview.classList.add("bg-[#3B82F6]", "text-white");
+
+        rejected.classList.remove("bg-[#3B82F6]", "text-white");
+        rejected.classList.add("bg-white", "text-[#64748B]");
+    } else if (toggled === "rejected") {
+        allJobs.classList.remove("bg-[#3B82F6]", "text-white");
+        allJobs.classList.add("bg-white", "text-[#64748B]");
+
+        interview.classList.remove("bg-[#3B82F6]", "text-white");
+        interview.classList.add("bg-white", "text-[#64748B]");
+
+        rejected.classList.remove("bg-white", "text-[#64748B]");
+        rejected.classList.add("bg-[#3B82F6]", "text-white");
     }
 }
 
 function renderJobs(jobs) {
-    jobContainer.innerHTML = "";
+    jobsContainer.innerHTML = "";
 
     if (jobs.length === 0) {
-        jobContainer.innerHTML = `
+        jobsContainer.innerHTML = `
             <!-- empty state--> 
             <div class="space-y-5 bg-white border border-[#F1F2F4] rounded-lg text-center py-16 px-10">
                 <img src="./empty-state.png" alt="empty-state text image" class="mx-auto">
@@ -156,35 +203,36 @@ function renderJobs(jobs) {
                 </div>
             </div>
         `;
-    }
-    jobs.forEach((job) => {
-        const jobCard = document.createElement("div");
-        jobCard.classList.add("space-y-5", "bg-white", "p-6", "border", "border-[#F1F2F4]", "rounded-lg");
-        jobCard.innerHTML = `
-            <div class="space-y-1 flex justify-between items-center">
-                <div>
-                    <h3 class="text-lg font-bold text-[#002C5C]">#${job.id} - ${job["job title"]}</h3>
-                    <p class="text-[#64748B]">${job["company name"]}</p>
+    } else {
+        jobs.forEach((job) => {
+            const jobCard = document.createElement("div");
+            jobCard.classList.add("space-y-5", "bg-white", "p-6", "border", "border-[#F1F2F4]", "rounded-lg");
+            jobCard.innerHTML = `
+                <div class="space-y-1 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-lg font-bold text-[#002C5C]">#${job.id} - ${job["job title"]}</h3>
+                        <p class="text-[#64748B]">${job["company name"]}</p>
+                    </div>
+
+                    <button onclick="deleteJob(${job.id})" class="text-[#64748B] border border-[#F1F2F4] rounded-full w-[32px] h-[32px]">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
                 </div>
 
-                <button onclick="deleteJob(${job.id})" class="text-[#64748B] border border-[#F1F2F4] rounded-full w-[32px] h-[32px]">
-                    <i class="fa-regular fa-trash-can"></i>
-                </button>
-            </div>
+                <p class="text-sm text-[#64748B]"><span>${job.location}</span> • <span>${job["job nature"]}</span> • $<span>${job["min salary"]}</span> - $<span>${job["max salary"]}</span></p>
 
-            <p class="text-sm text-[#64748B]"><span>${job.location}</span> • <span>${job["job nature"]}</span> • $<span>${job["min salary"]}</span> - $<span>${job["max salary"]}</span></p>
+                <div class="space-y-2">
+                    <p class="text-sm font-medium uppercase text-[#002C5C] px-3 py-2 bg-[#EEF4FF] inline-block rounded">${job.status}</p>
+                    <p class="text-sm">${job.description}</p>
+                </div>
 
-            <div class="space-y-2">
-                <p class="text-sm font-medium uppercase text-[#002C5C] px-3 py-2 bg-[#EEF4FF] inline-block rounded">${job.status}</p>
-                <p class="text-sm">${job.description}</p>
-            </div>
+                <div class="flex gap-2">
+                    <button onclick="interview(${job.id})" class="text-sm font-semibold px-3 py-2 uppercase border border-[#10B981] text-[#10B981] rounded">Interview</button>
+                    <button onclick="reject(${job.id})" class="text-sm font-semibold px-3 py-2 uppercase border border-[#EF4444] text-[#EF4444] rounded">Rejected</button>
+                </div>
+            `;
 
-            <div class="flex gap-2">
-                <button onclick="interview(${job.id})" class="text-sm font-semibold px-3 py-2 uppercase border border-[#10B981] text-[#10B981] rounded">Interview</button>
-                <button onclick="reject(${job.id})" class="text-sm font-semibold px-3 py-2 uppercase border border-[#EF4444] text-[#EF4444] rounded">Rejected</button>
-            </div>
-        `;
-
-        jobContainer.appendChild(jobCard);
-    });
+            jobsContainer.appendChild(jobCard);
+        });
+    }
 }
