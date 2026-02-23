@@ -101,14 +101,22 @@ const jobsContainer = document.getElementById("jobs-container");
 function interview(jobId) {
     let job = jobs.find((job) => job.id === jobId);
     job.status = "interview";
-    renderJobs(jobs);
+    if (toggleSelected === "all-jobs") {
+        renderJobs(jobs);
+    } else {
+        renderJobs(filterByStatus(toggleSelected));
+    }
     calculateJobs();
 }
 
 function reject(jobId) {
     let job = jobs.find((job) => job.id === jobId);
     job.status = "rejected";
-    renderJobs(jobs);
+    if (toggleSelected === "all-jobs") {
+        renderJobs(jobs);
+    } else {
+        renderJobs(filterByStatus(toggleSelected));
+    }
     calculateJobs();
 }
 
@@ -131,7 +139,6 @@ function filterByStatus(status) {
 document.addEventListener("DOMContentLoaded", function () {
     calculateJobs();
     onToggle("all-jobs");
-    renderJobs(jobs);
 });
 
 function calculateJobs() {
