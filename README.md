@@ -1,7 +1,11 @@
-# job-tracker
+# Asignment 4 : job tracker
 
+live link : [https://jahidulcf.github.io/job-tracker/](https://jahidulcf.github.io/job-tracker/)
+
+git repo : [https://github.com/jahidulcf/job-tracker](https://github.com/jahidulcf/job-tracker)
 
 Answers to Questions
+---
 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
 
 Answer:
