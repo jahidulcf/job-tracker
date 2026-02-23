@@ -101,34 +101,19 @@ const jobsContainer = document.getElementById("jobs-container");
 function interview(jobId) {
     let job = jobs.find((job) => job.id === jobId);
     job.status = "interview";
-    if (toggleSelected === "all-jobs") {
-        renderJobs(jobs);
-    } else {
-        renderJobs(filterByStatus(toggleSelected));
-    }
-    calculateJobs();
+    onToggle(toggleSelected);
 }
 
 function reject(jobId) {
     let job = jobs.find((job) => job.id === jobId);
     job.status = "rejected";
-    if (toggleSelected === "all-jobs") {
-        renderJobs(jobs);
-    } else {
-        renderJobs(filterByStatus(toggleSelected));
-    }
-    calculateJobs();
+    onToggle(toggleSelected);
 }
 
 function deleteJob(jobId) {
     let jobIndex = jobs.findIndex((job) => job.id === jobId);
     jobs.splice(jobIndex, 1);
-    if (toggleSelected === "all-jobs") {
-        renderJobs(jobs);
-    } else {
-        renderJobs(filterByStatus(toggleSelected));
-    }
-    calculateJobs();
+    onToggle(toggleSelected);
 }
 
 function filterByStatus(status) {
@@ -137,7 +122,6 @@ function filterByStatus(status) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    calculateJobs();
     onToggle("all-jobs");
 });
 
@@ -150,6 +134,7 @@ function calculateJobs() {
 function onToggle(toggled) {
     toggleSelected = toggled;
 
+    calculateJobs();
     editeStyleOnToogle(toggled);
 
     if (toggled === "all-jobs") {
