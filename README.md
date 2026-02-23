@@ -30,7 +30,7 @@ Answer: Event Bubbling is a system to track all parent elements up to it's root(
 
 Answer: Event deligation is passing specification event call or task by tracking node of it's parent node.
 
-    here event passed to sibling by tracking parent
+    here event passed to parent node and parent decide to perform task with second child
     
     first child > parent node > [1] 
     here parent have two child and index of second child is 1
