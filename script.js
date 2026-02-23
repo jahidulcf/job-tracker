@@ -7,7 +7,7 @@ const jobs = [
         location: "Boston",
         "min salary": "70,000",
         "max salary": "110,000",
-        status: "interview",
+        status:"not applied",
         description: "Collect, process, and analyze data to provide insights, create reports, and support business decision-making through data-driven strategies.",
     },
     {
@@ -18,7 +18,7 @@ const jobs = [
         location: "San Francisco",
         "min salary": "100,000",
         "max salary": "150,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Develop, test, and maintain software applications; collaborate with cross-functional teams; and ensure efficient code quality and performance.",
     },
     {
@@ -29,7 +29,7 @@ const jobs = [
         location: "Los Angeles",
         "min salary": "45,000",
         "max salary": "70,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Create visual concepts for digital and print media, design layouts, and work closely with clients to deliver creative solutions.",
     },
     {
@@ -40,7 +40,7 @@ const jobs = [
         location: "Chicago",
         "min salary": "50,000",
         "max salary": "80,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Prepare lesson plans, teach students across various subjects, assess learning progress, and foster a positive classroom environment.",
     },
     {
@@ -51,7 +51,7 @@ const jobs = [
         location: "Houston",
         "min salary": "60,000",
         "max salary": "90,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Provide patient care, assist doctors, administer medications, monitor vital signs, and educate patients on health maintenance.",
     },
     {
@@ -62,7 +62,7 @@ const jobs = [
         location: "Miami",
         "min salary": "40,000",
         "max salary": "65,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Prepare and cook meals, manage kitchen staff, maintain inventory, ensure hygiene standards, and develop new recipes.",
     },
     {
@@ -73,7 +73,7 @@ const jobs = [
         location: "Seattle",
         "min salary": "55,000",
         "max salary": "85,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Plan and execute digital campaigns, analyze metrics, optimize SEO/SEM, manage social media, and improve brand presence online.",
     },
     {
@@ -84,7 +84,7 @@ const jobs = [
         location: "Denver",
         "min salary": "90,000",
         "max salary": "130,000",
-        status: "Not applied",
+        status:"not applied",
         description: "Design, plan, and oversee construction projects, ensure compliance with safety and regulations, and manage project budgets and timelines.",
     }
 ];
